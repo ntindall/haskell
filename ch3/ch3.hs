@@ -225,3 +225,31 @@ lend3 amount balance
 
 -- otherwise is simply a variable bound to the value true that aids in
 -- readability
+
+myLength :: [l] -> Int
+myLength [] = 0
+myLength [x] = 1
+myLength (x:xs)  = 1 + myLength xs
+
+palindrome :: [a] -> [a]
+palindrome [] = []
+palindrome (x:xs) = [x] ++ (palindrome xs) ++ [x]
+
+isPalindrome :: Eq a => [a] -> Bool
+isPalindrome [] = True
+isPalindrome (x:xs) = 
+  case length xs of
+    0 -> True
+    1 -> True
+    n -> (x == last xs) && isPalindrome (take (n - 1) xs)
+
+
+
+-- data Tree a = Node a (Tree a) (Tree a)
+--             | Empty
+--               deriving (Show)
+
+
+heightOfTree :: Tree a -> Int
+heightOfTree Empty = 0
+heightOfTree (Node _ c1 c2) = 1 + max (heightOfTree c1) (heightOfTree c2)
